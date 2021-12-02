@@ -2,9 +2,9 @@ package org.example;
 
 import java.time.LocalDate;
 
-public abstract class Vehicle
+public class Vehicle
 {
-    private IdGenerator idGenerator = IdGenerator.getInstance("next-id-store.txt");  // get access to the id Generator
+    private org.example.IdGenerator idGenerator = org.example.IdGenerator.getInstance("next-id-store.txt");  // get access to the id Generator
 
     private int id;
     private String type;    // type of vehicle "Truck","Van","4x4", "Car" ...
@@ -15,7 +15,7 @@ public abstract class Vehicle
     private double costPerMile;
     private LocalDate lastServicedDate;
     private int mileage; // mileage recorded at last service
-    private LocationGPS depotGPSLocation;
+    private org.example.LocationGPS depotGPSLocation;
 
     // Constructor called when a new Vehicle is being created.
     // No vehicle id is passed in as an argument,
@@ -35,7 +35,7 @@ public abstract class Vehicle
         this.costPerMile = costPerMile;
         this.lastServicedDate = LocalDate.of(year, month,day);
         this.mileage = mileage;
-        this.depotGPSLocation = new LocationGPS(latitude,longitude);
+        this.depotGPSLocation = new org.example.LocationGPS(latitude,longitude);
     }
 
     // Constructor to create a Vehicle object, when the id is available.
@@ -56,7 +56,7 @@ public abstract class Vehicle
         this.costPerMile = costPerMile;
         this.lastServicedDate = LocalDate.of(year, month,day);
         this.mileage = mileage;
-        this.depotGPSLocation = new LocationGPS(latitude,longitude);
+        this.depotGPSLocation = new org.example.LocationGPS(latitude,longitude);
     }
 
     public int getId() {
@@ -114,12 +114,12 @@ public abstract class Vehicle
     {
         this.mileage = mileage;
     }
-    public LocationGPS getDepotGPSLocation()
+    public org.example.LocationGPS getDepotGPSLocation()
     {
         return depotGPSLocation;
     }
     public void setDepotGPSLocation(double latitude, double longitude) {
-        new LocationGPS(latitude,longitude);
+        new org.example.LocationGPS(latitude,longitude);
     }
     public String getType()
     {
@@ -141,5 +141,5 @@ public abstract class Vehicle
     }
 
 
-     
+
 }

@@ -25,6 +25,16 @@ public class PassengerStore {
         }
     }
 
+    //ID PASSENGER
+    public Passenger findPassengerByID(int ID) {
+        for (Passenger p : passengerList) {
+            if (ID == p.getId()) {
+                return p;
+            }
+        }
+        return null;
+    }
+
     /**
      * Read Passenger records from a text file and create and add Passenger
      * objects to the PassengerStore.
@@ -55,6 +65,24 @@ public class PassengerStore {
         }
     }
 
-    // TODO - see functional spec for details of code to add
+    public void addPassenger(String name, String email, String phone, double latitude, double longitude) {
+        passengerList.add(new Passenger(name, email, phone, latitude, longitude));
+    }
 
-} // end class
+    public Passenger findPassengerByName(String name) {
+        for (Passenger p : passengerList)
+            if (p.getName().equals(name)) {
+                return p;
+            }
+        return null;
+    }
+
+
+
+}
+
+// TODO - see functional spec for details of code to add
+
+
+
+// end class

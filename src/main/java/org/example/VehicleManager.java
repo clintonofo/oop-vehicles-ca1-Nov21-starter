@@ -1,12 +1,14 @@
 package org.example;
 
+
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class VehicleManager {
-    private final ArrayList<Vehicle> vehicleList;  // for Car and Van objects
+    private ArrayList<Vehicle> vehicleList;  // for Car and Van objects
 
     public VehicleManager(String fileName) {
         this.vehicleList = new ArrayList<>();
@@ -16,6 +18,19 @@ public class VehicleManager {
     public void displayAllVehicles() {
         for (Vehicle v : vehicleList)
             System.out.println(v.toString());
+    }
+    public void FindbyReg(){
+        for (Vehicle v : vehicleList);
+        {
+            this.vehicleList = new ArrayList<>();
+            if() this.FindbyReg();
+            else {
+
+                return;
+            }
+        }
+
+
     }
 
     public void loadVehiclesFromFile(String fileName) {
@@ -39,16 +54,28 @@ public class VehicleManager {
                 int mileage = sc.nextInt();
                 double latitude = sc.nextDouble();  // Depot GPS location
                 double longitude = sc.nextDouble();
-                int loadSpace = sc.nextInt();
+                int temp = sc.nextInt(); // don't read here...
 
                 if (type.equalsIgnoreCase("Van") ||
                         type.equalsIgnoreCase("Truck")) {
                     // construct a Van object and add it to the passenger list
+
+                    int loadSpace = temp;
                     vehicleList.add(new Van(id, type, make, model, milesPerKwH,
                             registration, costPerMile,
                             year, month, day,
                             mileage, latitude, longitude,
                             loadSpace));
+                }
+                else  if (type.equalsIgnoreCase("Car") ||
+                        type.equalsIgnoreCase("4x4")) {
+                    // construct a Van object and add it to the passenger list
+                    int passengers = temp;
+                    vehicleList.add(new Car(id, type, make, model, milesPerKwH,
+                            registration, costPerMile,
+                            year, month, day,
+                            mileage, latitude, longitude,
+                            passengers));
                 }
             }
             sc.close();
@@ -56,8 +83,39 @@ public class VehicleManager {
         } catch (IOException e) {
             System.out.println("Exception thrown. " + e);
         }
+
     }
 
     //TODO add more functionality as per spec.
+
+    public Vehicle findVehicleByReg(String Reg) {
+        for (Vehicle v : vehicleList)
+            if (v.getRegistration().equals(Reg)) {
+                return v;
+            }
+
+        return null;
+    }
+
+    public Vehicle findVehicleByType(String Type) {
+        for (Vehicle v : vehicleList)
+            if (v.getType().equals(Type)) {
+                return v;
+            }
+
+        return null;
+    }
+    public void addVehicle(String id, String Make, String Model, double milesPerKwH, String registration, double costPerMile,int year, int month, int day, int mileage, double latitude, double longitude ) {
+        vehicleList.add(new Vehicle(id, Make, Model, milesPerKwH, registration,costPerMile,year, month,day,mileage,latitude,longitude));
+
+
+    }
+//        public Vehicle findVehicleByReg(String registration) {
+//         for (Vehicle v : vehicleList)
+//                if (v.getRegistration().equals(registration)) {
+//                    return v;
+//                }
+//            return null;
+//        }
 
 }
